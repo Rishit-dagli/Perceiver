@@ -7,6 +7,7 @@ class FeedForward(tf.keras.layers.Layer):
         super(FeedForward, self).__init__()
         self.net = tf.keras.Sequential([tf.keras.layers.Dense(dim * mult, input_dim=dim),
                                         GEGLU(),
+                                        tf.keras.layers.Dropout(dropout),
                                         tf.keras.layers.Dense(dim, input_dim=dim * mult)
                                         ])
 
