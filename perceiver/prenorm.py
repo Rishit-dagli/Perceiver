@@ -5,11 +5,11 @@ class PreNorm(tf.keras.layers.Layer):
         super(PreNorm, self).__init__()
         self.fn = fn
         tf.print(dim)
-        self.norm = tf.keras.layers.LayerNormalization()
+        self.norm = tf.keras.layers.LayerNormalization(axis=-1)
         if context_dim is None:
             self.norm_context = None
         else:
-            self.norm_context = tf.keras.layers.LayerNormalization()
+            self.norm_context = tf.keras.layers.LayerNormalization(axis=-1)
 
     def call(self, x, **kwargs):
         tf.print(x)
