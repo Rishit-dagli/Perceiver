@@ -9,3 +9,9 @@
 [![GitHub stars](https://img.shields.io/github/stars/Rishit-dagli/Perceiver?style=social)](https://github.com/Rishit-dagli/Perceiver/stargazers)
 [![GitHub followers](https://img.shields.io/github/followers/Rishit-dagli?label=Follow&style=social)](https://github.com/Rishit-dagli)
 [![Twitter Follow](https://img.shields.io/twitter/follow/rishit_dagli?style=social)](https://twitter.com/intent/follow?screen_name=rishit_dagli)
+
+This Python package implements [Perceiver: General Perception with Iterative Attention](https://arxiv.org/abs/2103.03206) by Andrew Jaegle in TensorFlow. This model builds on top 
+of Transformers such that the data only enters through the cross attention mechanism (see figure) and allow it to scale to hundreds of thousands of inputs, like ConvNets. This, in 
+part also solves the Transformers Quadratic compute and memory bottleneck.
+
+Yannic Kilcher's [video](https://youtu.be/P_xeshTnPZg) was very helpful.
