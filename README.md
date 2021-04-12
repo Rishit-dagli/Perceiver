@@ -15,3 +15,5 @@ of Transformers such that the data only enters through the cross attention mecha
 part also solves the Transformers Quadratic compute and memory bottleneck.
 
 Yannic Kilcher's [video](https://youtu.be/P_xeshTnPZg) was very helpful.
+
+![](images/architecture.PNG)
