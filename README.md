@@ -17,3 +17,23 @@ part also solves the Transformers Quadratic compute and memory bottleneck.
 Yannic Kilcher's [video](https://youtu.be/P_xeshTnPZg) was very helpful.
 
 ![](images/architecture.PNG)
+
+## Installation
+
+Run the following to install:
+
+```sh
+pip install perceiver
+```
+
+## Developing `perceiver`
+
+To install `perceiver`, along with tools you need to develop and test, run the following in your virtualenv:
+
+```sh
+git clone https://github.com/Rishit-dagli/Perceiver.git
+# or clone your own fork
+
+cd perceiver
+pip install -e .[dev]
+```
