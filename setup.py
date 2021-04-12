@@ -45,7 +45,7 @@ setup(
     author_email="rishit.dagli@gmail.com",
 
     install_requires=[
-        "tensorflow >= 2.2.0",
+        "tensorflow~=2.4.0",
         "einops>=0.3",
     ],
 
