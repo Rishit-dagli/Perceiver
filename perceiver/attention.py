@@ -12,7 +12,7 @@ class Attention(tf.keras.layers.Layer):
         self.scale = dim_head ** -0.5
 
         self.to_queries = tf.keras.layers.Dense(inner_dim, input_dim=query_dim, use_bias=False)
-        self.to_keys_values = tf.keras.layers.Dense(inner_dim, input_dim=query_dim, use_bias=False)
+        self.to_keys_values = tf.keras.layers.Dense(inner_dim * 2, input_dim=query_dim, use_bias=False)
 
         self.to_out = tf.keras.Sequential([tf.keras.layers.Dense(inner_dim, input_dim=query_dim),
                                            tf.keras.layers.Dropout(dropout)
