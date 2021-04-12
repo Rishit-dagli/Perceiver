@@ -42,7 +42,7 @@ class Perceiver(tf.keras.Model):
                                                     dropout=attn_dropout))
         get_latent_ff = lambda: PreNorm(latent_dim, FeedForward(latent_dim, dropout=ff_dropout))
 
-        self.existing_layers = list()
+        self.existing_layers = tf.keras.Sequential()
         for i in range(depth):
 
             self.existing_layers = get_cross_attn()(self.existing_layers)
