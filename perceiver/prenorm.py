@@ -6,6 +6,10 @@ class PreNorm(tf.keras.layers.Layer):
         self.fn = fn
         tf.print(dim)
         self.norm = tf.keras.layers.LayerNormalization()
+        if context_dim is None:
+            self.norm_context = None
+        else:
+            self.norm_context = tf.keras.layers.LayerNormalization()
 
     def call(self, x, **kwargs):
         tf.print(x)
