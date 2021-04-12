@@ -1,3 +1,5 @@
+from typing import Callable
+
 import tensorflow as tf
 from einops import rearrange, repeat
 from .prenorm import PreNorm
@@ -32,23 +34,27 @@ class Perceiver(tf.keras.Model):
         input_dim = input_axis * ((num_freq_bands * 2) + 1) + input_channels
         self.latents = tf.Variable(tf.random.normal([num_latents, latent_dim]))
 
-        get_cross_attn = lambda: PreNorm(latent_dim,
+        get_cross_attn: Callable[[], PreNorm] = lambda: PreNorm(latent_dim,
                                          Attention(latent_dim, input_dim, heads=cross_heads, dim_head=cross_dim_head,
                                                    dropout=attn_dropout),
                                          context_dim=input_dim)
-        get_cross_ff = lambda: PreNorm(latent_dim, FeedForward(latent_dim, dropout=ff_dropout))
-        get_latent_attn = lambda: PreNorm(latent_dim,
+        get_cross_ff: Callable[[], PreNorm] = lambda: PreNorm(latent_dim, FeedForward(latent_dim, dropout=ff_dropout))
+        get_latent_attn: Callable[[], PreNorm] = lambda: PreNorm(latent_dim,
                                           Attention(latent_dim, heads=latent_heads, dim_head=latent_dim_head,
                                                     dropout=attn_dropout))
-        get_latent_ff = lambda: PreNorm(latent_dim, FeedForward(latent_dim, dropout=ff_dropout))
+        get_latent_ff: Callable[[], PreNorm] = lambda: PreNorm(latent_dim, FeedForward(latent_dim, dropout=ff_dropout))
 
-        self.existing_layers = tf.keras.Sequential()
+        self.existing_layers = list()
         for i in range(depth):
+            self.existing_layers.append(get_cross_attn())
+            self.existing_layers.append(get_cross_ff())
+            self.existing_layers.append(get_latent_attn())
+            self.existing_layers.append(get_latent_ff())
 
-            self.existing_layers = get_cross_attn()(self.existing_layers)
-            self.existing_layers = get_cross_ff()(self.existing_layers)
-            self.existing_layers = get_latent_attn()(self.existing_layers)
-            self.existing_layers = get_latent_ff()(self.existing_layers)
+            # self.existing_layers = get_cross_attn()(self.existing_layers)
+            # self.existing_layers = get_cross_ff()(self.existing_layers)
+            # self.existing_layers = get_latent_attn()(self.existing_layers)
+            # self.existing_layers = get_latent_ff()(self.existing_layers)
 
         self.to_logits = tf.keras.Sequential([
             tf.keras.layers.LayerNormalization(axis=-1),
