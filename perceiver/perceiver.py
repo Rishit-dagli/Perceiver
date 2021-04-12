@@ -51,7 +51,7 @@ class Perceiver(tf.keras.Model):
             self.existing_layers = get_latent_ff()(self.existing_layers)
 
         self.to_logits = tf.keras.Sequential([
-            tf.keras.layers.LayerNormalization(),
+            tf.keras.layers.LayerNormalization(axis=-1),
             tf.keras.layers.Dense(num_classes, input_dim=latent_dim)
         ])
 
