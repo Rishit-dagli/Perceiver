@@ -1,7 +1,6 @@
 import tensorflow as tf
 from einops import rearrange, repeat
 
-
 class Attention(tf.keras.layers.Layer):
     def __init__(self, query_dim, context_dim=None, heads=8, dim_head=64, dropout=0.):
         super(Attention, self).__init__()
@@ -10,9 +9,14 @@ class Attention(tf.keras.layers.Layer):
             context_dim = query_dim
 
         self.scale = dim_head ** -0.5
+        self.heads = heads
 
-        self.to_queries = tf.keras.layers.Dense(inner_dim, input_dim=query_dim, use_bias=False)
-        self.to_keys_values = tf.keras.layers.Dense(inner_dim * 2, input_dim=query_dim, use_bias=False)
+        self.to_queries = tf.keras.layers.Dense(inner_dim,
+                                                input_dim=query_dim,
+                                                use_bias=False)
+        self.to_keys_values = tf.keras.layers.Dense(inner_dim * 2,
+                                                    input_dim=query_dim,
+                                                    use_bias=False)
 
         self.to_out = tf.keras.Sequential([tf.keras.layers.Dense(inner_dim, input_dim=query_dim),
                                            tf.keras.layers.Dropout(dropout)
