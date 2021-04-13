@@ -3,6 +3,7 @@
 ![PyPI](https://img.shields.io/pypi/v/perceiver)
 [![Lint with Black⬛](https://github.com/Rishit-dagli/Perceiver/actions/workflows/black.yml/badge.svg)](https://github.com/Rishit-dagli/Perceiver/actions/workflows/black.yml)
 [![Upload Python Package](https://github.com/Rishit-dagli/Perceiver/actions/workflows/python-publish.yml/badge.svg)](https://github.com/Rishit-dagli/Perceiver/actions/workflows/python-publish.yml)
+[![DOI](https://zenodo.org/badge/357042370.svg)](https://zenodo.org/badge/latestdoi/357042370)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ![GitHub License](https://img.shields.io/github/license/Rishit-dagli/Perceiver)
@@ -72,6 +73,15 @@ model = Perceiver(
 img = tf.random.normal([1, 224, 224, 3]) # replicating 1 imagenet image
 model(img) # (1, 1000)
 ```
+
+## About the notebooks
+
+### [`perceiver_example`](https://github.com/Rishit-dagli/Perceiver/blob/main/examples/perceiver_example.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Rishit-dagli/Perceiver/blob/main/examples/perceiver_example.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Rishit-dagli/Perceiver/HEAD?filepath=examples%2Fperceiver_example.ipynb)
+
+This notebook installs the `perceiver` package and shows an example of running it on a single imagenet image (`[1, 224, 224, 3]`) with 1000 classes to demonstarte the working of 
+this model.
 
 ## Want to Contribute 🙋‍♂️?
 
