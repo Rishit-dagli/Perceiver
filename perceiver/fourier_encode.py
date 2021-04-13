@@ -1,4 +1,5 @@
 import tensorflow as tf
+import math
 
 
 def fourier_encode(x, max_freq, num_bands=4, base=2):
