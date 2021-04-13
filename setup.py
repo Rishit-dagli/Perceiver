@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf8") as fh:
 
 setup(
     name="perceiver",
-    version="0.1.0",
+    version="0.1.1",
     description="Implement of Perceiver, General Perception with Iterative Attention in TensorFlow",
     packages=["perceiver"],
     long_description=long_description,
