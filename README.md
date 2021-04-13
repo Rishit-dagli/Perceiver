@@ -3,6 +3,7 @@
 ![PyPI](https://img.shields.io/pypi/v/perceiver)
 [![Lint with Black⬛](https://github.com/Rishit-dagli/Perceiver/actions/workflows/black.yml/badge.svg)](https://github.com/Rishit-dagli/Perceiver/actions/workflows/black.yml)
 [![Upload Python Package](https://github.com/Rishit-dagli/Perceiver/actions/workflows/python-publish.yml/badge.svg)](https://github.com/Rishit-dagli/Perceiver/actions/workflows/python-publish.yml)
+[![DOI](https://zenodo.org/badge/357042370.svg)](https://zenodo.org/badge/latestdoi/357042370)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ![GitHub License](https://img.shields.io/github/license/Rishit-dagli/Perceiver)
@@ -38,9 +39,17 @@ cd perceiver
 pip install -e .[dev]
 ```
 
+## A bit about Perceiver
+
+The Perceiver model aims to deal with arbitrary configurations of different modalities using a single transformer-based architecture. Transformers are often flexible and make few assumptions about their inputs, but that also scale quadratically with the number of inputs in terms of both memory and computation. This model proposes a mechanism that makes it possible to deal with high-dimensional inputs, while retaining the expressivity and flexibility to deal with arbitrary input configurations.
+
+![](images/architecture.PNG)
+
+The idea here is to introduce a small set of latent units that forms an attention bottleneck through which the inputs must pass. This avoids the quadratic scaling problem of all-to-all attention of a classical transformer. The model can be seen as performing a fully end-to-end clustering of the inputs, with the latent units as the cluster centres, leveraging a highly asymmetric crossattention layer. For spatial information the authors compensate for the lack of explicit grid structures in our model by associating Fourier feature encodings.
+
 ## Usage
 
-```
+```python
 from perceiver import Perceiver
 import tensorflow as tf
 
@@ -64,6 +73,15 @@ model = Perceiver(
 img = tf.random.normal([1, 224, 224, 3]) # replicating 1 imagenet image
 model(img) # (1, 1000)
 ```
+
+## About the notebooks
+
+### [`perceiver_example`](https://github.com/Rishit-dagli/Perceiver/blob/main/examples/perceiver_example.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Rishit-dagli/Perceiver/blob/main/examples/perceiver_example.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Rishit-dagli/Perceiver/HEAD?filepath=examples%2Fperceiver_example.ipynb)
+
+This notebook installs the `perceiver` package and shows an example of running it on a single imagenet image (`[1, 224, 224, 3]`) with 1000 classes to demonstarte the working of 
+this model.
 
 ## Want to Contribute 🙋‍♂️?
 
