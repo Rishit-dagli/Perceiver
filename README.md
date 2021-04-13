@@ -5,7 +5,7 @@
 [![Upload Python Package](https://github.com/Rishit-dagli/Perceiver/actions/workflows/python-publish.yml/badge.svg)](https://github.com/Rishit-dagli/Perceiver/actions/workflows/python-publish.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-[![GitHub license](https://img.shields.io/badge/MIT-blue.svg)](LICENSE)
+![GitHub License](https://img.shields.io/github/license/Rishit-dagli/Perceiver)
 [![GitHub stars](https://img.shields.io/github/stars/Rishit-dagli/Perceiver?style=social)](https://github.com/Rishit-dagli/Perceiver/stargazers)
 [![GitHub followers](https://img.shields.io/github/followers/Rishit-dagli?label=Follow&style=social)](https://github.com/Rishit-dagli)
 [![Twitter Follow](https://img.shields.io/twitter/follow/rishit_dagli?style=social)](https://twitter.com/intent/follow?screen_name=rishit_dagli)
