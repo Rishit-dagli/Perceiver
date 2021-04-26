@@ -76,6 +76,8 @@ class Perceiver(tf.keras.Model):
             # self.existing_layers = get_latent_attn()(self.existing_layers)
             # self.existing_layers = get_latent_ff()(self.existing_layers)
 
+        self.existing_layers = tf.keras.Sequential(self.existing_layers)
+
         self.to_logits = tf.keras.Sequential(
             [
                 tf.keras.layers.LayerNormalization(axis=-1),
@@ -103,7 +105,7 @@ class Perceiver(tf.keras.Model):
 
         x = repeat(self.latents, "n d -> b n d", b=b)
 
-        x = tf.keras.Sequential(self.existing_layers)(x)
+        x = self.existing_layers(x)
 
         x = tf.math.reduce_mean(x, axis=-2)
         return self.to_logits(x)
